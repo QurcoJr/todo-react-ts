@@ -1,12 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './screens/home'
 import History from './screens/history'
-import Layout from './components/layout'
-
-const ROUTES = {
-  HOME: '/',
-  HISTORY: '/history'
-}
+import { ROUTES } from './constants'
+import Layout from './components/Layout'
 
 export default function App() {
   return (

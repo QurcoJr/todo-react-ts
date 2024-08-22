@@ -1,8 +1,12 @@
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
+body {
+  font-size: 1.6rem;
+}
 *,
 *:before,
 *:after {
@@ -32,4 +36,180 @@ ul {
 img {
   max-width: 100%;
   height: auto;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* FONTS */
+.poppins-thin {
+  font-weight: 100;
+}
+
+.poppins-extralight {
+  font-weight: 200;
+}
+
+.poppins-light {
+  font-weight: 300;
+}
+
+.poppins-regular {
+  font-weight: 400;
+}
+
+.poppins-medium {
+  font-weight: 500;
+}
+
+.poppins-semibold {
+  font-weight: 600;
+}
+
+.poppins-bold {
+  font-weight: 700;
+}
+
+.poppins-extrabold {
+  font-weight: 800;
+}
+
+.poppins-black {
+  font-weight: 900;
+}
+
+.container {
+  max-width: 375px;
+  width: 100%;
+  margin: auto;
+  border-radius: 2rem;
+  height: 100dvh;
+  overflow-y: auto;
+  background-color: #e8f1fd;
+  padding: 3rem 2rem;
+}
+
+/* FLEXBOX CLASSES */
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.place-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.username {
+  margin-left: 1rem;
+}
+
+.search-wrapper {
+  margin-top: 1.6rem;
+  margin-bottom: 4.5rem;
+}
+
+.input {
+  border-radius: 0.6rem;
+  border: none;
+  outline: none;
+}
+
+::placeholder {
+  color: #b0b0b0;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.9rem 0.8rem;
+  box-shadow: 0px 2px 4px 0px #6a6ce026;
+  caret-color: #6a6ce0;
+}
+
+.search-input:focus::placeholder {
+  color: transparent;
+}
+
+/* POSITION */
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.search-btn {
+  width: 26px;
+  height: 26px;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #30507d;
+  font-size: 1rem;
+}
+
+.nav-list {
+  gap: 1.6rem;
+}
+
+.nav-link.active rect {
+  fill: #d8d8d8;
+}
+
+.clear-btn {
+  text-decoration: underline;
+  font-size: 1.2rem;
 }
