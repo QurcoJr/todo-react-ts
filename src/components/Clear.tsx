@@ -9,7 +9,7 @@ export default function Clear() {
   }
 
   return (
-    <button onClick={handleClear} className="btn clear-btn poppins-medium">
+    <button onClick={handleClear} className="clear-btn poppins-medium">
       Clear {location.pathname === ROUTES.HOME ? 'all tasks' : 'history'}
     </button>
   )
