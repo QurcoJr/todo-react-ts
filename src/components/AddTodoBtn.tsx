@@ -1,15 +1,12 @@
 import plusIcon from '../assets/plus.svg'
 
-export default function AddTodoBtn() {
-  const handleClick = () => {
-    alert('add todo')
-  }
+interface Props {
+  onClick: () => void
+}
 
+export default function AddTodoBtn({ onClick }: Props) {
   return (
-    <button
-      className="add-todo-btn fixed flex place-center"
-      onClick={handleClick}
-    >
+    <button className="add-todo-btn fixed flex place-center" onClick={onClick}>
       <img src={plusIcon} alt="plus" />
     </button>
   )

@@ -1,7 +1,13 @@
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLTextAreaElement> {
   placeholder: string
 }
 
-export default function Textarea({ placeholder }: Props) {
-  return <textarea className="poppins-semibold" placeholder={placeholder} />
+export default function Textarea({ placeholder, ...other }: Props) {
+  return (
+    <textarea
+      className="poppins-semibold"
+      placeholder={placeholder}
+      {...other}
+    />
+  )
 }

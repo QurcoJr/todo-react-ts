@@ -13,7 +13,8 @@ export default function Modal({ heading, isOpen, onClose, children }: Props) {
   if (!isOpen) return null
 
   return ReactDOM.createPortal(
-    <div className="modal-backdrop" onClick={onClose}>
+    <>
+      <div className="modal-backdrop" onClick={onClose} />
       <div className="modal">
         <div className="modal-header flex justify-center">
           <h3 className="modal-heading poppins-bold">{heading}</h3>
@@ -25,7 +26,7 @@ export default function Modal({ heading, isOpen, onClose, children }: Props) {
           {children}
         </div>
       </div>
-    </div>,
+    </>,
     document.getElementById('modal-root')!
   )
 }

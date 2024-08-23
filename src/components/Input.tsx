@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string
 }
 
-export default function Input({ label }: Props) {
+export default function Input({ label, ...other }: Props) {
   const [focused, setFocused] = useState(false)
   const [filled, setFilled] = useState(false)
 
@@ -18,7 +18,7 @@ export default function Input({ label }: Props) {
     <div className="input-container">
       <label
         className={`input-label poppins-regular ${
-          focused || filled ? 'focused poppins-semibold' : ''
+          focused || filled || other.value ? 'focused poppins-semibold' : ''
         }`}
       >
         {label}
@@ -27,6 +27,7 @@ export default function Input({ label }: Props) {
         className="input-field"
         onFocus={handleFocus}
         onBlur={handleBlur}
+        {...other}
       />
     </div>
   )

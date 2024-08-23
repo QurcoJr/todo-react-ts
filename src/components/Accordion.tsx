@@ -3,17 +3,43 @@ import chevronIcon from '../assets/chevron.svg'
 import editIcon from '../assets/edit.svg'
 import checkIcon from '../assets/check.svg'
 import deleteIcon from '../assets/delete.svg'
+import { Task, TodoType } from '../constants'
+import { markAsCompleted, deleteTask } from '../api'
+import { useAppContext } from '../context/AppContext'
+import { useOutletCtx } from './Layout'
 
-interface Props {
+interface AccordionItemProps {
   heading: string
   body: string
   isOpen: boolean
   onClick: () => void
-  type: 'task' | 'history'
+  type: TodoType
+  id: string
 }
 
-const AccordionItem = ({ heading, body, isOpen, onClick, type }: Props) => {
+const AccordionItem = ({
+  heading,
+  body,
+  isOpen,
+  onClick,
+  type,
+  id
+}: AccordionItemProps) => {
   const contentHeight = useRef<HTMLDivElement | null>(null)
+  const { invalidateData } = useAppContext()
+  const { onEditClick } = useOutletCtx()
+
+  const handleMarkAsCompleteClick = (id: string) => {
+    if (type === 'tasks') {
+      markAsCompleted(id)
+      invalidateData()
+    }
+  }
+
+  const handleDeleteClick = (id: string) => {
+    deleteTask({ id, type })
+    invalidateData()
+  }
 
   return (
     <div className="accordion-wrapper ">
@@ -39,7 +65,7 @@ const AccordionItem = ({ heading, body, isOpen, onClick, type }: Props) => {
         className="body-container"
         style={
           isOpen
-            ? { height: contentHeight.current!.scrollHeight }
+            ? { height: contentHeight.current?.scrollHeight }
             : { height: '0px' }
         }
       >
@@ -55,18 +81,21 @@ const AccordionItem = ({ heading, body, isOpen, onClick, type }: Props) => {
         }`}
       >
         <div className="edit-delete-wrapper">
-          {type === 'task' && (
-            <button>
+          {type === 'tasks' && (
+            <button onClick={() => onEditClick(id)}>
               <img src={editIcon} alt="edit" />
             </button>
           )}
-          <button>
+          <button onClick={() => handleDeleteClick(id)}>
             <img src={deleteIcon} alt="delete" />
           </button>
         </div>
-        <button className="flex items-center completion-wrapper">
+        <button
+          className="flex items-center completion-wrapper"
+          onClick={() => handleMarkAsCompleteClick(id)}
+        >
           <span className="poppins-medium">
-            {type === 'task' ? 'Mark completed' : 'Completed'}
+            {type === 'tasks' ? 'Mark completed' : 'Completed'}
           </span>
           <img src={checkIcon} alt="complete" />
         </button>
@@ -75,7 +104,12 @@ const AccordionItem = ({ heading, body, isOpen, onClick, type }: Props) => {
   )
 }
 
-export default function Accordion() {
+interface AccordionProps {
+  type: TodoType
+  data: Task[]
+}
+
+export default function Accordion({ data, type }: AccordionProps) {
   const [openIndices, setOpenIndices] = useState<number[]>([])
 
   const handleItemClick = (index: number) => {
@@ -88,29 +122,17 @@ export default function Accordion() {
 
   return (
     <div className="flex flex-column accordions-wrapper">
-      <AccordionItem
-        heading={'heading'}
-        body={
-          'lorem nasdjsa jiasdka jioasdjoassdjpabskdm sa asdasodnas dasdasnbius dasda asdnoasnd jansdsamnoas dasdask asdasdpon jasm das disj'
-        }
-        isOpen={openIndices.includes(0)}
-        onClick={() => handleItemClick(0)}
-        type="task"
-      />
-      <AccordionItem
-        heading={'heading'}
-        body={'body'}
-        isOpen={openIndices.includes(1)}
-        onClick={() => handleItemClick(1)}
-        type="history"
-      />
-      <AccordionItem
-        heading={'heading'}
-        body={'body'}
-        isOpen={openIndices.includes(2)}
-        onClick={() => handleItemClick(2)}
-        type="task"
-      />
+      {data.map((item, index) => (
+        <AccordionItem
+          id={item.id}
+          key={item.id}
+          heading={item.name}
+          body={item.description}
+          isOpen={openIndices.includes(index)}
+          onClick={() => handleItemClick(index)}
+          type={type}
+        />
+      ))}
     </div>
   )
 }

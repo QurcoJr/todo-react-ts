@@ -1,27 +1,13 @@
-import { useState } from 'react'
 import Accordion from '../../components/Accordion'
-import Modal from '../../components/Modal'
-import Textarea from '../../components/TextArea'
-import Input from '../../components/Input'
+import EmptyLine from '../../components/EmptyLine'
+import { useAppContext } from '../../context/AppContext'
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(true)
+  const { data } = useAppContext()
 
-  return (
-    <>
-      <Accordion />
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        heading="Create Task"
-      >
-        <>
-          <Input label="Task Name" />
-          <div className="text-area-wrapper">
-            <Textarea placeholder="Type task details here..." />
-          </div>
-        </>
-      </Modal>
-    </>
-  )
+  if (data.tasks.length === 0) {
+    return <EmptyLine />
+  }
+
+  return <Accordion data={data.tasks} type="tasks" />
 }

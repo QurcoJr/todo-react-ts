@@ -1,11 +1,20 @@
 import { useLocation } from 'react-router-dom'
 import { ROUTES } from '../constants'
+import { clearTasks, clearHistory } from '../api'
+import { useAppContext } from '../context/AppContext'
 
 export default function Clear() {
+  const { invalidateData } = useAppContext()
+
   const location = useLocation()
 
   const handleClear = () => {
-    alert('clear')
+    if (location.pathname === ROUTES.HOME) {
+      clearTasks()
+    } else {
+      clearHistory()
+    }
+    invalidateData()
   }
 
   return (

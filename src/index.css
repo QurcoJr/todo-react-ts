@@ -4,6 +4,13 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
+:root {
+  --primary: #6a6ce0;
+  --secondary: #b0b0b0;
+  --bg-color: #e8f1fd;
+  --text-color: #6c86a8;
+}
+
 body {
   font-size: 1.6rem;
 }
@@ -92,7 +99,7 @@ button {
   border-radius: 2rem;
   height: 100dvh;
   overflow-y: auto;
-  background-color: #e8f1fd;
+  background-color: var(--bg-color);
   padding: 3rem 2rem;
 }
 
@@ -153,16 +160,15 @@ button {
 
 input {
   width: 100%;
-  padding: 0.6rem 0.7rem;
+  padding: 0.7rem;
   border-radius: 0.6rem;
-  border: 1px solid #6a6ce0;
+  border: 1px solid var(--primary);
   outline: none;
-  caret-color: #6a6ce0;
+  caret-color: var(--primary);
 }
 
 .input-container {
   position: relative;
-  margin: 16px 0;
   width: 100%;
 }
 
@@ -172,7 +178,7 @@ input {
   top: 50%;
   transform: translateY(-50%);
   transition: all 0.2s ease-out;
-  color: #b0b0b0;
+  color: var(--secondary);
   font-size: 1rem;
   pointer-events: none;
 }
@@ -184,7 +190,7 @@ input {
 }
 
 ::placeholder {
-  color: #b0b0b0;
+  color: var(--secondary);
   font-size: 1.2rem;
   font-family: 'Poppins', sans-serif;
 }
@@ -242,7 +248,7 @@ input {
 .add-todo-btn {
   bottom: 2.4rem;
   border-radius: 50%;
-  background-color: #6a6ce0;
+  background-color: var(--primary);
   width: 5.2rem;
   height: 5.2rem;
   color: #fff;
@@ -287,12 +293,12 @@ input {
 .accordion-wrapper .body-container {
   transition: 0.3s ease-in-out;
   box-shadow: 1px 1px 4px 0px #30507d40 inset;
-  background: #e8f1fd;
+  background: var(--bg-color);
 }
 
 .accordion-wrapper .body-content {
   padding: 1.2rem;
-  color: #6c86a8;
+  color: var(--text-color);
   font-size: 1rem;
   opacity: 0;
   transition: 0.3s ease-in-out;
@@ -316,7 +322,7 @@ input {
 
 .accordion-actions {
   font-size: 1rem;
-  color: #6c86a8;
+  color: var(--text-color);
   transition: 0.3s ease-in-out;
   position: relative;
   z-index: 2;
@@ -354,9 +360,13 @@ input {
   background-color: #fff;
   padding: 1.2rem;
   border-radius: 1.2rem;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 335px;
   width: 100%;
+  z-index: 1000;
 }
 
 .modal-close {
@@ -382,22 +392,39 @@ input {
 textarea {
   outline: none;
   border: none;
-  background: #e8f1fd;
+  background: var(--bg-color);
   box-shadow: 1px 1px 4px 0px #30507d40 inset;
   resize: none;
   width: 100%;
+  height: 100%;
   padding: 1.9rem 1.2rem;
   font-size: 1rem;
-  caret-color: #6a6ce0;
-  color: #6c86a8;
-  height: 9.9rem;
+  caret-color: var(--primary);
+  color: var(--text-color);
 }
 
 textarea::placeholder {
   font-size: 1rem;
-  color: #6c86a8;
+  color: var(--text-color);
 }
 
 .text-area-wrapper {
+  height: 9.9rem;
   margin-top: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.save-btn {
+  width: 100%;
+  border-radius: 0.4rem;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.empty-line {
+  height: 0.1rem;
+  background: #6a6ce04d;
 }
