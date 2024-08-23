@@ -151,10 +151,36 @@ button {
   margin-bottom: 4.5rem;
 }
 
-.input {
+input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
   border-radius: 0.6rem;
-  border: none;
+  border: 1px solid #6a6ce0;
   outline: none;
+  caret-color: #6a6ce0;
+}
+
+.input-container {
+  position: relative;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.input-label {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-out;
+  color: #b0b0b0;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.input-label.focused {
+  top: 0.6rem;
+  left: 0.8rem;
+  font-size: 0.6rem;
 }
 
 ::placeholder {
@@ -164,10 +190,9 @@ button {
 }
 
 .search-input {
-  width: 100%;
-  padding: 0.9rem 0.8rem;
   box-shadow: 0px 2px 4px 0px #6a6ce026;
-  caret-color: #6a6ce0;
+  border: none;
+  padding: 1rem 0.8rem;
 }
 
 .search-input:focus::placeholder {
@@ -309,4 +334,70 @@ button {
 
 .accordion-actions.active {
   margin-top: 2.3rem;
+}
+
+/* modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #908a8a80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  position: relative;
+  max-width: 335px;
+  width: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-header {
+  margin-bottom: 0.8rem;
+}
+
+.modal-heading {
+  font-size: 1.2rem;
+  color: #30507d;
+}
+
+/* textarea */
+textarea {
+  outline: none;
+  border: none;
+  background: #e8f1fd;
+  box-shadow: 1px 1px 4px 0px #30507d40 inset;
+  resize: none;
+  width: 100%;
+  padding: 1.9rem 1.2rem;
+  font-size: 1rem;
+  caret-color: #6a6ce0;
+  color: #6c86a8;
+  height: 9.9rem;
+}
+
+textarea::placeholder {
+  font-size: 1rem;
+  color: #6c86a8;
+}
+
+.text-area-wrapper {
+  margin-top: 1rem;
 }
